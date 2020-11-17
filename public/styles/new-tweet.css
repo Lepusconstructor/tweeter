@@ -1,0 +1,26 @@
+.new-tweet {
+  padding: 10px;
+}
+.new-tweet form {
+  display: flex;
+  flex-direction: column;
+}
+.new-tweet #tweet-text {
+  border-bottom: 4px solid #545149;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 10px;
+  background-color: #f4f1ec;
+  display: flex;
+  align-items: center;
+}
+#submit-note {
+  font-family: "Bungee", cursive;
+  display: flex;
+  justify-content: space-between;
+}
+#submit-btn {
+  color: #FFFF;
+  background-color: #4056A1;
+}
