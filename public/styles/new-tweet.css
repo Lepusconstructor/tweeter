@@ -4,6 +4,7 @@
 .new-tweet form {
   display: flex;
   flex-direction: column;
+  
 }
 .new-tweet #tweet-text {
   border-bottom: 4px solid #545149;
@@ -14,6 +15,8 @@
   background-color: #f4f1ec;
   display: flex;
   align-items: center;
+  font-weight: 700;
+
 }
 #submit-note {
   font-family: "Bungee", cursive;
