@@ -14,42 +14,49 @@
   font-family: "Source Sans Pro", sans-serif;
   font-size: 24px;;
   background-image: none;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 10px;
+  
   padding: 20px;
 }
 .tweet header .name {
   display: flex;
   align-items: center;
 }
+
 .tweet header .name span {
   padding: 5px;
 }
+
 .tweet header img {
   padding: 10px;
 }
+
 .tweet header .account {
   color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
+
 .tweet:hover header .account {
   color: lightsteelblue;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .tweet p {
   padding:20px;
   margin:10px;
   border-bottom: 4px solid #545149;
   font-weight: 400;
 }
+
 .tweet footer {
   display: flex;
   flex-direction: row;
@@ -57,6 +64,7 @@
   margin: 10px;
   padding: 10px;
 }
+
 .tweet footer .date {
   font-size: smaller;
 }
