@@ -5,36 +5,18 @@
  */
 
 // Test / driver code (temporary). Eventually will get this from the server.
-const tweetData = [
-  {
-  "user": {
-    "name": "Newton",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-  "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-  "created_at": 1461116232227
-},
-{
-  "user": {
-    "name": "Emily",
-    "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@SirIsaac"
-    },
-  "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-  "created_at": 1461116232227
-
-}
-  
-];
 
 $(document).ready(function() {
+  
+  const loadTweets = function() {
+    $
+      .ajax('/tweets')
+      .then(tweets => renderTweets(tweets))
+  }
+  
   const createTweetElement = function(tweet) {
-    const tweetHtml = $(`
+    
+    let tweetHtml = $(`
     <article class="tweet">
       <header>
         <div class="name">
@@ -59,32 +41,32 @@ $(document).ready(function() {
     </article>`);
     return tweetHtml;
   };
+
   const renderTweets = (tweets) => {
     for (const tweet of tweets) {
       const newArticle = createTweetElement(tweet);
-    $('section.tweet-container').append(newArticle);
+    $('section.tweet-container').prepend(newArticle);
     }
   }
   
-  renderTweets(tweetData);
-  /*
-  $('form').on('submit', event => {
-    event.preventDefault();
-    fetchTweets(renderTweets);
-    
-    const createHTML = tweets => addLatestTweet(tweets, createTweetElement);
-    const fetchAndUpdate = () => fetchTweets(createHTML);
-    submitTweet(event, fetchAndUpdate);
-    
+  //const submitTweet = () => {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      
+    $
+      .ajax({
+        url: '/tweets',
+        method: 'POST',
+        data: $(this).serialize()
+      })
+      .then(function() {
+        loadTweets();
+      });
+     
+    });
+  //}
+  //submitTweet();
 })
-    $('#submit-btn').on('click', event => {
-      
-      const createHTML = tweets => renderTweets(tweets, createTweetElement);
-      fetchTweets(createHTML);
-      
-    })
-  */
-  })
 
 
   

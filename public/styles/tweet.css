@@ -19,7 +19,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  
+  margin-top: 0;
   padding: 20px;
 }
 .tweet header .name {
@@ -35,7 +35,7 @@
   padding: 10px;
 }
 
-.tweet header .account {
+.tweet header .handle {
   color: transparent;
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@
   padding: 20px;
 }
 
-.tweet:hover header .account {
+.tweet:hover header .handle {
   color: lightsteelblue;
   display: flex;
   justify-content: center;
