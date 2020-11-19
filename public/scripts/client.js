@@ -16,9 +16,15 @@ const loadTweets = function() {
     .ajax('/tweets')
     .then(tweets => renderTweets(tweets))
 }
-  
+
+const escapeXSS =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}  
+
 const createTweetElement = function(tweet) {
-  let tweetHtml = $(`
+  let tweetHtml = `
   <article class="tweet">
     <header>
       <div class="name">
@@ -30,7 +36,7 @@ const createTweetElement = function(tweet) {
       </div>
     </header>
       <p>
-      ${tweet.content.text}
+      ${escapeXSS(tweet.content.text)}
       </p>
     <footer>
       <div class="date">
@@ -40,7 +46,7 @@ const createTweetElement = function(tweet) {
       icons
       </div>
     </footer>
-  </article>`);
+  </article>`;
     return tweetHtml;
 };
 
