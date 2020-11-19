@@ -16,6 +16,7 @@ const loadTweets = function() {
   $
     .ajax('/tweets')
     .then(tweets => renderTweets(tweets))
+    .catch(err => console.log(err))
 }
 
 const escapeXSS =  function(str) {
@@ -88,8 +89,12 @@ const submitTweet = () => {
 
 function validation(tweet) {
   if (tweet.length === 0) {
+    let errormsg = "⛔  EMPTY! Like your pocket! Plz follow teh rulz ( 0 < what you have to say < 140 ) kthnxbai  ⛔";
+    $('#error').text(errormsg);
     $('.new-tweet .hidden').slideDown();
   } else if (tweet.length > 140) {
+    let errormsg = "⛔  TOO LONG! Like Canadian winter! Plz follow teh rulz ( 0 < what you have to say < 140 ) kthnxbai  ⛔";
+    $('#error').text(errormsg);
     $('.new-tweet .hidden').slideDown();
   } else {
     return true;

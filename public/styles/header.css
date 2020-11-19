@@ -1,5 +1,5 @@
 header {
-  margin-top: 10%;
+  margin-top: 7%;
   height: 400px;
   width: 100%;
   display: flex;
@@ -10,3 +10,4 @@ header {
   background-image: url("../images/foggy-birds.png");
 
 }
+
