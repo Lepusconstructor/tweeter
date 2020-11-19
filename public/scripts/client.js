@@ -9,6 +9,7 @@
 $(document).ready(function() {
   loadTweets();
   submitTweet();
+  
 })
   
 const loadTweets = function() {
@@ -58,9 +59,13 @@ const renderTweets = (tweets) => {
 }
   
 const submitTweet = () => {
+ 
   $('form').submit(function(event) {
     event.preventDefault();
     const text = $('#tweet-text').val();
+    $('#tweet-text').on('click', function() {
+    $('.new-tweet .hidden').slideUp();
+    })
     let validatedTweet = validation(text);
     
     if(validatedTweet === true){
@@ -83,9 +88,9 @@ const submitTweet = () => {
 
 function validation(tweet) {
   if (tweet.length === 0) {
-    alert("Where your tweet at??");
+    $('.new-tweet .hidden').slideDown();
   } else if (tweet.length > 140) {
-    alert("Yo it's too long, like Canadian winter!");
+    $('.new-tweet .hidden').slideDown();
   } else {
     return true;
   }
