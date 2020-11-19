@@ -55,6 +55,7 @@
   margin:10px;
   border-bottom: 4px solid #545149;
   font-weight: 400;
+  word-wrap: break-word;
 }
 
 .tweet footer {

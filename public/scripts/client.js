@@ -7,6 +7,7 @@
 // Test / driver code (temporary). Eventually will get this from the server.
 
 $(document).ready(function() {
+  loadTweets();
   submitTweet();
 })
   
@@ -33,7 +34,7 @@ const createTweetElement = function(tweet) {
       </p>
     <footer>
       <div class="date">
-      ${tweet.created_at}
+      ${new Date(tweet.created_at)}
       </div>
       <div>
       icons
