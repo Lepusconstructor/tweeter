@@ -8,6 +8,12 @@
 
 $(document).ready(function() {
   loadTweets();
+  $('#compose-btn').on('click', function() {
+    $('form').slideUp;
+  });
+  $('#compose-btn').on('click', function() {
+    $('form').slideDown;
+  });
   submitTweet();
   
 })
@@ -42,10 +48,13 @@ const createTweetElement = function(tweet) {
       </p>
     <footer>
       <div class="date">
-      ${new Date(tweet.created_at)}
+      ${new Date(tweet.created_at).toLocaleDateString("en-US")}
       </div>
       <div>
-      icons
+      <i class="fa fa-flag">🏴</i>
+      <i class="fa fa-heart">💕</i>
+      <i class="fa fa-retweet">↪</i>
+      
       </div>
     </footer>
   </article>`;
