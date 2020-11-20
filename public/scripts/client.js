@@ -7,15 +7,9 @@
 // Test / driver code (temporary). Eventually will get this from the server.
 
 $(document).ready(function() {
+  //before creating new tweets, the page should have existing tweets loaded
   loadTweets();
-  $('#compose-btn').on('click', function() {
-    $('form').slideUp;
-  });
-  $('#compose-btn').on('click', function() {
-    $('form').slideDown;
-  });
   submitTweet();
-  
 })
   
 const loadTweets = function() {
@@ -24,7 +18,7 @@ const loadTweets = function() {
     .then(tweets => renderTweets(tweets))
     .catch(err => console.log(err))
 }
-
+//to prevent from cross-site scripting, aka unsafe user input, create an "escape" funciton to encode the text
 const escapeXSS =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -51,19 +45,22 @@ const createTweetElement = function(tweet) {
       ${new Date(tweet.created_at).toLocaleDateString("en-US")}
       </div>
       <div>
-      <i class="fa fa-flag">🏁</i>
+      
+      <i class="fa fa-flag">🏁</i> 
       <i class="fa fa-heart">💓</i>
       <i class="fa fa-retweet">✏</i>
       
       </div>
     </footer>
   </article>`;
+  //theoratically the icons should be showing icons with just the classes, but here they are just place holders: "Refused to apply style from 'http://localhost:8080/node_modules/@fortawesome/fontawesome-free/css/all.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
     return tweetHtml;
 };
 
 const renderTweets = (tweets) => {
   for (const tweet of tweets) {
     const newArticle = createTweetElement(tweet);
+    //the newest tweet should be shown right after the composing tweet text area, and the one after should be the second newest and so on
     $('section.tweet-container').prepend(newArticle);
   }
 }
@@ -71,14 +68,18 @@ const renderTweets = (tweets) => {
 const submitTweet = () => {
  
   $('form').submit(function(event) {
+    //prevent the form from refreshing and rerouting
     event.preventDefault();
     const text = $('#tweet-text').val();
+    //once the user clicks on the textarea, the error message shown before should disappear until there is a new error message
     $('#tweet-text').on('click', function() {
     $('.new-tweet .hidden').slideUp();
     })
+    
     let validatedTweet = validation(text);
     
     if(validatedTweet === true){
+      //submit tweet
       $
       .ajax({
         url: '/tweets',
@@ -87,7 +88,9 @@ const submitTweet = () => {
       })
       .then(function(){
         loadTweets();
+        //clearing the text area
         $('#tweet-text').val("");
+        //turn the count back to 140
         $("section.new-tweet").find("output").val(140);
       })
       

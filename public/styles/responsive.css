@@ -1,3 +1,4 @@
+/*for phone or tablet*/
 @media only screen and (max-width: 768px) {
   nav {
     background-color: transparent;
@@ -26,6 +27,7 @@
     margin-top: 5%;
   }
 }
+/*for desktop*/
 @media only screen and (min-width: 768px) and (max-width:1024px) {
   body {
     margin-top: 15%;
@@ -36,7 +38,10 @@
   }
   body > header {
     margin-left: 5%;
-    margin-right: 5%;
+    width: 33%;
+  }
+  body > main {
+    width: 66%;
   }
   .tweet > header {
     display: flex;
@@ -46,9 +51,9 @@
   .container {
     margin-right: 3%;
   }
-  
-  
 }
+
+/*for big screens*/
 @media only screen and (min-width: 1024px) {
   body {
     margin-top: 15%;
@@ -58,13 +63,15 @@
     
   }
   body > header {
-    margin-left: 3%;
+    margin-left: 5%;
+    width: 33%;
+  }
+  body > main {
+    width: 66%;
   }
   .tweet > header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  
 }
