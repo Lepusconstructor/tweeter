@@ -51,9 +51,9 @@ const createTweetElement = function(tweet) {
       ${new Date(tweet.created_at).toLocaleDateString("en-US")}
       </div>
       <div>
-      <i class="fa fa-flag">🏴</i>
-      <i class="fa fa-heart">💕</i>
-      <i class="fa fa-retweet">↪</i>
+      <i class="fa fa-flag">🏁</i>
+      <i class="fa fa-heart">💓</i>
+      <i class="fa fa-retweet">✏</i>
       
       </div>
     </footer>
