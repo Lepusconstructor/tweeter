@@ -7,9 +7,11 @@
 // Test / driver code (temporary). Eventually will get this from the server.
 
 $(document).ready(function() {
+
   //before creating new tweets, the page should have existing tweets loaded
   loadTweets();
   submitTweet();
+  
 })
   
 const loadTweets = function() {
@@ -24,7 +26,6 @@ const escapeXSS =  function(str) {
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }  
-
 const createTweetElement = function(tweet) {
   let tweetHtml = `
   <article class="tweet">
@@ -42,7 +43,7 @@ const createTweetElement = function(tweet) {
       </p>
     <footer>
       <div class="date">
-      ${new Date(tweet.created_at).toLocaleDateString("en-US")}
+      ${moment().startOf('hour').fromNow(tweet.created_at)} ago
       </div>
       <div>
       
@@ -55,14 +56,17 @@ const createTweetElement = function(tweet) {
   </article>`;
   //theoratically the icons should be showing icons with just the classes, but here they are just place holders: "Refused to apply style from 'http://localhost:8080/node_modules/@fortawesome/fontawesome-free/css/all.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
     return tweetHtml;
+    //${new Date(tweet.created_at).toLocaleDateString("en-US")} was used to show the created time
 };
 
 const renderTweets = (tweets) => {
+  $('section.tweet-container').empty();
   for (const tweet of tweets) {
     const newArticle = createTweetElement(tweet);
     //the newest tweet should be shown right after the composing tweet text area, and the one after should be the second newest and so on
-    $('section.tweet-container').prepend(newArticle);
+      $('section.tweet-container').prepend(newArticle);
   }
+  
 }
   
 const submitTweet = () => {
@@ -73,7 +77,7 @@ const submitTweet = () => {
     const text = $('#tweet-text').val();
     //once the user clicks on the textarea, the error message shown before should disappear until there is a new error message
     $('#tweet-text').on('click', function() {
-    $('.new-tweet .hidden').slideUp();
+      $('.new-tweet .hidden').slideUp();
     })
     
     let validatedTweet = validation(text);
@@ -101,20 +105,14 @@ const submitTweet = () => {
 
 function validation(tweet) {
   if (tweet.length === 0) {
-    let errormsg = "⛔  EMPTY! Like your pocket! Plz follow teh rulz ( 0 < what you have to say < 140 ) kthnxbai  ⛔";
+    let errormsg = "⛔  EMPTY! Like your pocket! Plz keep it between 0 and 140, kthnxbai  ⛔";
     $('#error').text(errormsg);
     $('.new-tweet .hidden').slideDown();
   } else if (tweet.length > 140) {
-    let errormsg = "⛔  TOO LONG! Like Canadian winter! Plz follow teh rulz ( 0 < what you have to say < 140 ) kthnxbai  ⛔";
+    let errormsg = "⛔  TOO LONG! Like Canadian winter! Plz Plz keep it between 0 and 140, kthnxbai  ⛔";
     $('#error').text(errormsg);
     $('.new-tweet .hidden').slideDown();
   } else {
     return true;
   }
 }
-
-
-
-
-  
-
